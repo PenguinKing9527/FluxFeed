@@ -1,0 +1,287 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#574425",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#131b2e",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-container": "#98805d",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-container": "#684000",
+                        "tertiary-fixed": "#fcdeb5",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fea619",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#271901",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-container": "#e5eeff",
+                        "inverse-primary": "#bec6e0",
+                        "secondary": "#855300",
+                        "primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface": "#f8f9ff",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#213145",
+                        "on-surface": "#0b1c30",
+                        "outline": "#76777d",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "surface-variant": "#d3e4fe",
+                        "surface-dim": "#cbdbf5",
+                        "on-background": "#0b1c30",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#271901",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base_unit": "4px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "sidebar_width": "240px",
+                        "margin-page": "24px",
+                        "list_width": "320px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Literata"],
+                        "body-md": ["Literata"],
+                        "ui-meta": ["Inter"],
+                        "headline-md": ["Literata"],
+                        "ui-label-sm": ["Inter"],
+                        "body-lg": ["Literata"],
+                        "ui-label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "ui-meta": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "ui-label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["17px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "ui-label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            width: 380px;
+            height: 600px;
+            overflow: hidden;
+            background-color: #f8f9ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c6c6cd;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #76777d;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="flex flex-col font-ui-label-md text-on-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-gutter h-16 w-full bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline sticky top-0 z-40">
+<div class="flex items-center gap-stack-sm">
+<span class="font-display-sm text-display-sm font-bold text-on-surface">Reader</span>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 hover:bg-surface-container-highest transition-colors duration-200 rounded-lg group" title="Open Dashboard">
+<span class="material-symbols-outlined text-on-surface-variant group-active:opacity-80">open_in_new</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto custom-scrollbar flex flex-col">
+<!-- RSS Detection Section -->
+<section class="p-gutter bg-surface-container-low">
+<div class="bg-surface border border-outline-variant p-stack-md rounded-xl shadow-sm">
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">rss_feed</span>
+<span class="font-ui-label-md text-on-surface-variant">Feed detected on this page</span>
+</div>
+<button class="w-full py-3 px-stack-md bg-primary text-on-primary font-ui-label-md rounded-lg flex justify-center items-center gap-stack-sm hover:bg-on-primary-container transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                    Subscribe to this page
+                </button>
+</div>
+</section>
+<!-- Recent Articles Header -->
+<div class="px-gutter pt-stack-lg pb-stack-sm flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Articles</h2>
+<span class="font-ui-meta text-ui-meta text-on-primary-container">5 unread</span>
+</div>
+<!-- Article List -->
+<section class="flex flex-col divide-y divide-outline-variant px-gutter pb-gutter">
+<!-- Article 1 -->
+<article class="py-stack-md hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex gap-stack-md items-start">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-secondary-container shrink-0" title="Unread"></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-4 h-4 bg-surface-variant rounded-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A small, crisp favicon logo of a technology news website with a minimalist geometric icon in black and white against a clean light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBxS6Zx1SqAQCk1QFHjAZzPcrLQZGPZ5V6CgDNEpDCuEzWdgDKtTVJnu1CKZ1NfMHgoPwnvAcGLK49_3fBAOyeRAx01FpUmk8o5WEJxca5z8ippgik5l-oIKmAMS2ng4AGe3_94msnc3T_OBomneabSJzlM7pX7H8c0S-GN7jplt5HIl99heD_7ErXmHOaYF9AkD7bq2OIVnXtoxh3wyOxooSom4jewZUfzUHuYyk--S-jIazQhbVh6q1EY_uBl3SQD0kQcBhBlSMq">
+</div>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant truncate">The Verge</span>
+<span class="text-outline mx-1">·</span>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant">12m</span>
+</div>
+<h3 class="font-headline-md text-[15px] leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors">The future of generative AI in high-end design workflows</h3>
+</div>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="py-stack-md hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex gap-stack-md items-start">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-secondary-container shrink-0" title="Unread"></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-4 h-4 bg-surface-variant rounded-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A crisp, high-resolution favicon for a famous technology and culture magazine, featuring a bold black letter on a clean white square background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALmhkMdqUFZQJJbafJLB8LI4fai4OKGGzXQzDE-isxiyGdVmo9CVoT5w72p3dP2e3hDfv7I8VETS-8G-152MaEAf4Rgdq8dq8j75lTsqmHhKdYuHmflj1KdBljcmeIRBsEX5b9zLvpUqZYqeISmB0uTlKUcUiTlkNAa1lr02KInBzR0w0o805KITiRhIGojOG_5EjDErc7iXrMhzpMTw2y0OyQ07vcJEuBVxjZo7uAA7stJafE0qPqxScgyFm71XzJBaUdcYQMPGFE">
+</div>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant truncate">Wired</span>
+<span class="text-outline mx-1">·</span>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant">1h</span>
+</div>
+<h3 class="font-headline-md text-[15px] leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Quantum computing reaches a new milestone in stability</h3>
+</div>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="py-stack-md hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex gap-stack-md items-start">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-secondary-container shrink-0" title="Unread"></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-4 h-4 bg-surface-variant rounded-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A distinctive green favicon for a major technology startup news portal, showcasing high-contrast branding suitable for a modern digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLjhUS7tqHrJdmAtRvr4h8c2JIC7nBS1ueTyoSiuuyCc1I49BW5_UPjLfp5U6ls2aI51LWTlB0J835zvaS7m1Dapn2sW5LO0opepVBICU-TD9z_ob-ijdsFWGrVXgf98pcgsM7fuyd1LaXwztYfYin82wDCg8khC8nr0iglZcnO_vjoVy5xHzGCj6akqqtW6DRZFAu3qV5xsm3nKyP2b-hk5wKzO0givdJdbC_flVuqTllAx1sfDtcLhdRso1h-J5KBPIY-_kdGViJ">
+</div>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant truncate">TechCrunch</span>
+<span class="text-outline mx-1">·</span>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant">3h</span>
+</div>
+<h3 class="font-headline-md text-[15px] leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Startups are pivoting to sustainable energy storage solutions</h3>
+</div>
+</div>
+</article>
+<!-- Article 4 -->
+<article class="py-stack-md hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex gap-stack-md items-start">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-secondary-container shrink-0" title="Unread"></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-4 h-4 bg-surface-variant rounded-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="The classic blackletter 'T' favicon of a world-renowned newspaper, presented with crisp edges and traditional authoritative styling for a digital platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiX2tfp2iTcf4aQlBApnBF7hCklke4s0yTpHR1MAwov3kJqp-puTdsDEvFRNTHCnmBZK-v9LjzIBpp9njbpMZ--u8p6ukRF8m4VjqhE4S2ymQ22vnFZ65dbR08p0seha2UEWzCLTw-tImSEPl3K0_ul9DE9kc9_TOaMgMGWUVLFD0cL4qS56DYk30u2kthxN3wIsNeUlhe79ijWDEasyErA6UdU_qnmvnhq-LMqS6Ui7ntiP94Px0BIJREBJ_3-dYvA7cHtjg2yqdJ">
+</div>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant truncate">NY Times</span>
+<span class="text-outline mx-1">·</span>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant">5h</span>
+</div>
+<h3 class="font-headline-md text-[15px] leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Global economic shifts: A weekend long-form analysis</h3>
+</div>
+</div>
+</article>
+<!-- Article 5 -->
+<article class="py-stack-md hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex gap-stack-md items-start">
+<div class="w-1.5 h-1.5 mt-2 rounded-full bg-secondary-container shrink-0" title="Unread"></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-4 h-4 bg-surface-variant rounded-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimal black dot or monogram favicon for a popular blogging platform, representing a clean and modern typography-focused aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN6VOl97rV1Nojx3GlEiOYZG-xhlxt5dokTmRre5EXNgA-upsPk7Oj81jdFAliC8DZ-M0WXQNy-i1YvzjzswwHE_hR3rqjGLXpt5OhirumBbf4DzdFg0pBzjOJuUyvnAlBCAIM0sbH_gsR-gOIjIzecReZswnv03YaUGEWoIXjqf9nsAzyhLoZnb7Mg7ll13bCuMRiJq9sSRiVlb5-tdd8HUDInndtFZWiHwjvInCZqH2HXKo5Sk1IdOhDBbcA_rrmXlDYnXA-l0QX">
+</div>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant truncate">Medium</span>
+<span class="text-outline mx-1">·</span>
+<span class="font-ui-meta text-ui-meta text-on-surface-variant">8h</span>
+</div>
+<h3 class="font-headline-md text-[15px] leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors">How to build a functional library in your digital workspace</h3>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Footer -->
+<footer class="h-16 px-gutter flex items-center justify-between bg-surface-container border-t border-outline-variant shrink-0">
+<button class="flex items-center gap-stack-sm text-on-surface-variant hover:text-primary transition-colors py-2 px-3 rounded-lg hover:bg-surface-container-highest" id="settingsBtn">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-ui-label-sm">Settings</span>
+</button>
+<button class="flex items-center gap-stack-sm text-on-surface-variant hover:text-primary transition-colors py-2 px-3 rounded-lg hover:bg-surface-container-highest" id="markReadBtn">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+<span class="font-ui-label-sm">Mark all as read</span>
+</button>
+</footer>
+<script>
+        // Simple micro-interaction for marking as read
+        document.getElementById('markReadBtn').addEventListener('click', function() {
+            const dots = document.querySelectorAll('.bg-secondary-container');
+            dots.forEach(dot => {
+                dot.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                dot.style.opacity = '0';
+                dot.style.transform = 'scale(0)';
+            });
+            const unreadText = document.querySelector('.text-ui-meta.text-on-primary-container');
+            if (unreadText) {
+                unreadText.innerText = '0 unread';
+            }
+        });
+
+        // Hover effect for articles
+        const articles = document.querySelectorAll('article');
+        articles.forEach(article => {
+            article.addEventListener('mousedown', () => {
+                article.style.transform = 'scale(0.99)';
+            });
+            article.addEventListener('mouseup', () => {
+                article.style.transform = 'scale(1)';
+            });
+            article.addEventListener('mouseleave', () => {
+                article.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

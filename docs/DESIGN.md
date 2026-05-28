@@ -104,12 +104,6 @@ spacing:
   stack-lg: 24px
 ---
 
-## Figma References
-
-- RSS Reader: https://www.figma.com/design/CxhsJ3wzbtQDOVOXamoen0/FluxFeed?node-id=1-2&t=uO9wP0uHf2sojhcL-4
-- RSS Popup: https://www.figma.com/design/CxhsJ3wzbtQDOVOXamoen0/FluxFeed?node-id=1-188&t=uO9wP0uHf2sojhcL-4
-- Settings: https://www.figma.com/design/CxhsJ3wzbtQDOVOXamoen0/FluxFeed?node-id=1-305&t=uO9wP0uHf2sojhcL-4
-
 ## Brand & Style
 The design system is centered on **Functional Minimalism**. It prioritizes information density and legibility for a browser extension environment where horizontal space is at a premium. The goal is to evoke a sense of calm, intellectual focus, and order, transforming a chaotic web of information into a curated library.
 

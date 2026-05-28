@@ -1,0 +1,362 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reader Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        /* Custom Slim Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #000000;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#574425",
+                      "surface-container-high": "#dce9ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface-bright": "#f8f9ff",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#45464d",
+                      "on-primary-fixed": "#131b2e",
+                      "surface-tint": "#565e74",
+                      "primary-container": "#131b2e",
+                      "outline-variant": "#c6c6cd",
+                      "on-tertiary-container": "#98805d",
+                      "on-secondary-fixed": "#2a1700",
+                      "secondary-fixed": "#ffddb8",
+                      "on-secondary-container": "#684000",
+                      "tertiary-fixed": "#fcdeb5",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#fea619",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#271901",
+                      "on-secondary-fixed-variant": "#653e00",
+                      "surface-container": "#e5eeff",
+                      "inverse-primary": "#bec6e0",
+                      "secondary": "#855300",
+                      "primary": "#000000",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "surface": "#f8f9ff",
+                      "on-primary-container": "#7c839b",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#ffb95f",
+                      "tertiary": "#000000",
+                      "inverse-surface": "#213145",
+                      "on-surface": "#0b1c30",
+                      "outline": "#76777d",
+                      "background": "#f8f9ff",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "surface-variant": "#d3e4fe",
+                      "surface-dim": "#cbdbf5",
+                      "on-background": "#0b1c30",
+                      "primary-fixed": "#dae2fd",
+                      "on-tertiary-fixed": "#271901",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#3f465c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base_unit": "4px",
+                      "stack-lg": "24px",
+                      "gutter": "16px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "sidebar_width": "240px",
+                      "margin-page": "24px",
+                      "list_width": "320px"
+              },
+              "fontFamily": {
+                      "display-sm": ["Literata"],
+                      "body-md": ["Literata"],
+                      "ui-meta": ["Inter"],
+                      "headline-md": ["Literata"],
+                      "ui-label-sm": ["Inter"],
+                      "body-lg": ["Literata"],
+                      "ui-label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "ui-meta": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "ui-label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["17px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "ui-label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-ui-meta selection:bg-secondary-container selection:text-on-secondary-container">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation (From Shared Components JSON) -->
+<aside class="w-[240px] h-screen sticky top-0 left-0 bg-surface-container border-r border-outline-variant flex flex-col py-margin-page">
+<div class="px-gutter mb-stack-lg">
+<h1 class="font-display-sm text-display-sm font-bold text-on-surface">Reader</h1>
+<p class="font-ui-label-sm text-ui-label-sm text-on-surface-variant opacity-70">Curated Library</p>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<div class="space-y-1">
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-ui-label-md text-ui-label-md">Inbox</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-ui-label-md text-ui-label-md">Starred</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span class="font-ui-label-md text-ui-label-md">All Articles</span>
+</a>
+<div class="px-gutter pt-stack-lg pb-stack-sm font-ui-label-sm text-ui-label-sm uppercase tracking-wider text-outline">Categories</div>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="computer">computer</span>
+<span class="font-ui-label-md text-ui-label-md">Technology</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-ui-label-md text-ui-label-md">Design</span>
+</a>
+</div>
+</nav>
+<div class="mt-auto px-gutter py-stack-lg border-t border-outline-variant/30 space-y-1">
+<button class="w-full flex items-center justify-center gap-stack-sm bg-primary text-on-primary font-ui-label-md py-stack-sm rounded hover:opacity-90 transition-opacity mb-stack-md">
+<span class="material-symbols-outlined !text-[18px]" data-icon="add">add</span>
+                    Add Feed
+                </button>
+<a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container font-bold border-l-2 border-secondary px-gutter py-stack-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-ui-label-md text-ui-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-ui-label-md text-ui-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content (Settings Form) -->
+<main class="flex-1 h-screen overflow-y-auto bg-surface-bright flex justify-center">
+<div class="max-w-[720px] w-full px-10 py-16 space-y-16">
+<!-- Page Header -->
+<header>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-2">Options</h2>
+<p class="font-body-md text-on-surface-variant">Configure your reading experience and manage your data.</p>
+</header>
+<!-- Section: General -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline" data-icon="tune">tune</span>
+<h3 class="font-ui-label-md text-ui-label-md uppercase tracking-widest text-outline">General</h3>
+</div>
+<div class="grid gap-8">
+<div class="flex items-center justify-between">
+<div>
+<label class="font-ui-label-md text-on-surface block mb-1">Refresh Interval</label>
+<p class="text-ui-meta text-on-surface-variant">Frequency of checking for new articles.</p>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 px-3 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary-container focus:outline-none transition-all font-ui-meta text-on-surface" type="number" value="30">
+<span class="text-ui-meta text-on-surface-variant">minutes</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<label class="font-ui-label-md text-on-surface block mb-1">Auto-mark as Read</label>
+<p class="text-ui-meta text-on-surface-variant">Mark articles read as you scroll past them.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox">
+<div class="w-11 h-6 bg-outline-variant rounded-full toggle-label transition-colors">
+<div class="toggle-dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<label class="font-ui-label-md text-on-surface block mb-1">Retention Period</label>
+<p class="text-ui-meta text-on-surface-variant">How long to keep read articles in history.</p>
+</div>
+<select class="px-3 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary-container focus:outline-none transition-all font-ui-meta text-on-surface min-w-[140px]">
+<option>30 days</option>
+<option selected="">90 days</option>
+<option>1 year</option>
+<option>Forever</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section: Appearance -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline" data-icon="palette">palette</span>
+<h3 class="font-ui-label-md text-ui-label-md uppercase tracking-widest text-outline">Appearance</h3>
+</div>
+<div class="grid gap-8">
+<div>
+<label class="font-ui-label-md text-on-surface block mb-4">Color Theme</label>
+<div class="grid grid-cols-3 gap-4">
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border-2 border-primary bg-surface-container-lowest transition-all">
+<div class="w-full h-12 bg-surface-bright rounded border border-outline-variant/30 flex items-center justify-center">
+<div class="w-8 h-1 bg-on-surface/10 rounded-full"></div>
+</div>
+<span class="font-ui-label-sm text-on-surface">System</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border-2 border-transparent bg-surface-container-low hover:border-outline-variant transition-all">
+<div class="w-full h-12 bg-white rounded border border-outline-variant/30 flex flex-col gap-1 p-2">
+<div class="w-full h-1.5 bg-slate-100 rounded-full"></div>
+<div class="w-2/3 h-1.5 bg-slate-100 rounded-full"></div>
+</div>
+<span class="font-ui-label-sm text-on-surface-variant">Light</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border-2 border-transparent bg-surface-container-low hover:border-outline-variant transition-all">
+<div class="w-full h-12 bg-slate-900 rounded border border-white/10 flex flex-col gap-1 p-2">
+<div class="w-full h-1.5 bg-white/10 rounded-full"></div>
+<div class="w-2/3 h-1.5 bg-white/10 rounded-full"></div>
+</div>
+<span class="font-ui-label-sm text-on-surface-variant">Dark</span>
+</button>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<label class="font-ui-label-md text-on-surface">Reading Font Size</label>
+<span class="text-ui-meta text-on-surface-variant font-bold">16px</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range">
+<div class="flex justify-between mt-2 text-[10px] text-outline uppercase tracking-tighter">
+<span>Small</span>
+<span>Default</span>
+<span>Large</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Import/Export -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline" data-icon="database">database</span>
+<h3 class="font-ui-label-md text-ui-label-md uppercase tracking-widest text-outline">Data Management</h3>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex-1 min-w-[200px] flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest hover:bg-surface-container hover:shadow-sm transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="upload_file">upload_file</span>
+<span class="font-ui-label-md text-on-surface">Import OPML</span>
+</button>
+<button class="flex-1 min-w-[200px] flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest hover:bg-surface-container hover:shadow-sm transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="download">download</span>
+<span class="font-ui-label-md text-on-surface">Export OPML</span>
+</button>
+</div>
+</section>
+<!-- Section: Shortcuts -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline" data-icon="keyboard">keyboard</span>
+<h3 class="font-ui-label-md text-ui-label-md uppercase tracking-widest text-outline">Shortcuts</h3>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<div class="flex items-center justify-between py-1">
+<span class="text-ui-meta text-on-surface-variant">Next / Previous Article</span>
+<div class="flex gap-1">
+<kbd class="px-2 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] font-bold">J</kbd>
+<kbd class="px-2 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] font-bold">K</kbd>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-ui-meta text-on-surface-variant">Mark as Read</span>
+<kbd class="px-2 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] font-bold">M</kbd>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-ui-meta text-on-surface-variant">Open in Background</span>
+<kbd class="px-2 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] font-bold">V</kbd>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-ui-meta text-on-surface-variant">Star / Unstar</span>
+<kbd class="px-2 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] font-bold">S</kbd>
+</div>
+</div>
+</section>
+<!-- Section: About -->
+<section class="pt-8 space-y-6">
+<div class="p-8 rounded-2xl bg-on-primary-fixed text-white relative overflow-hidden">
+<!-- Abstract pattern background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-display-sm text-display-sm mb-1">Reader v2.4.0</h4>
+<p class="font-ui-label-sm opacity-60">Stable Release — "Chromium Build"</p>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-ui-label-sm font-bold">Up to date</span>
+</div>
+<div class="flex gap-6">
+<a class="font-ui-label-md flex items-center gap-2 hover:underline" href="#">
+<span class="material-symbols-outlined !text-[16px]" data-icon="description">description</span>
+                                    Changelog
+                                </a>
+<a class="font-ui-label-md flex items-center gap-2 hover:underline" href="#">
+<span class="material-symbols-outlined !text-[16px]" data-icon="policy">policy</span>
+                                    Privacy Policy
+                                </a>
+<a class="font-ui-label-md flex items-center gap-2 hover:underline" href="#">
+<span class="material-symbols-outlined !text-[16px]" data-icon="code">code</span>
+                                    Open Source
+                                </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Spacer -->
+<div class="h-24"></div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction for range slider -->
+<script>
+        const slider = document.querySelector('input[type="range"]');
+        const sliderVal = document.querySelector('.text-ui-meta.font-bold');
+        
+        slider.addEventListener('input', (e) => {
+            const val = 12 + (e.target.value / 100) * 12; // 12px to 24px
+            sliderVal.textContent = Math.round(val) + 'px';
+        });
+
+        // Toggle logic
+        const toggle = document.querySelector('.toggle-checkbox');
+        toggle.addEventListener('change', function() {
+            // Simulated state update
+            console.log('Auto-mark read:', this.checked);
+        });
+    </script>
+</body></html>

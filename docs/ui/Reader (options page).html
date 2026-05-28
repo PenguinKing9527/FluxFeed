@@ -1,0 +1,347 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reader | Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Literata:opsz,wght@7..72,400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#574425",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#131b2e",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-container": "#98805d",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-container": "#684000",
+                        "tertiary-fixed": "#fcdeb5",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fea619",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#271901",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-container": "#e5eeff",
+                        "inverse-primary": "#bec6e0",
+                        "secondary": "#855300",
+                        "primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface": "#f8f9ff",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#213145",
+                        "on-surface": "#0b1c30",
+                        "outline": "#76777d",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "surface-variant": "#d3e4fe",
+                        "surface-dim": "#cbdbf5",
+                        "on-background": "#0b1c30",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#271901",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base_unit": "4px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "sidebar_width": "240px",
+                        "margin-page": "24px",
+                        "list_width": "320px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Literata"],
+                        "body-md": ["Literata"],
+                        "ui-meta": ["Inter"],
+                        "headline-md": ["Literata"],
+                        "ui-label-sm": ["Inter"],
+                        "body-lg": ["Literata"],
+                        "ui-label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "ui-meta": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "ui-label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["17px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "ui-label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb { background: #94a3b8; }
+        .reading-pane-content { max-width: 720px; margin-left: auto; margin-right: auto; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-hidden h-screen flex">
+<!-- Sidebar Section: SideNavBar -->
+<aside class="w-[240px] h-screen sticky top-0 left-0 flex flex-col h-full py-margin-page bg-surface-container dark:bg-surface-container border-r border-outline-variant dark:border-outline z-50">
+<div class="px-gutter mb-stack-lg">
+<h1 class="font-display-sm text-display-sm font-bold text-on-surface dark:text-on-surface">Reader</h1>
+<p class="font-ui-label-sm text-ui-label-sm text-on-surface-variant opacity-70">Curated Library</p>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Main Navigation -->
+<div class="mb-stack-lg">
+<a class="flex items-center justify-between gap-stack-md bg-secondary-container text-on-secondary-container font-bold border-l-2 border-secondary px-gutter py-stack-sm transition-colors duration-200 scale-[0.98]" href="#">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-ui-label-md text-ui-label-md">Inbox</span>
+</div>
+<span class="bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-ui-label-md text-ui-label-md">Starred</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span class="font-ui-label-md text-ui-label-md">All Articles</span>
+</a>
+</div>
+<!-- Folders -->
+<div class="mb-stack-lg">
+<div class="px-gutter mb-2 opacity-40 uppercase tracking-widest font-ui-label-sm text-[10px]">Folders</div>
+<div class="group">
+<button class="w-full flex items-center justify-between gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined" data-icon="computer">computer</span>
+<span class="font-ui-label-md text-ui-label-md">Technology</span>
+</div>
+<span class="font-ui-meta text-ui-meta opacity-60">5</span>
+</button>
+</div>
+<div class="group">
+<button class="w-full flex items-center justify-between gap-stack-md text-on-surface-variant hover:bg-surface-container-high px-gutter py-stack-sm transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-ui-label-md text-ui-label-md">Design</span>
+</div>
+<span class="font-ui-meta text-ui-meta opacity-60">3</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="px-gutter pt-stack-md border-t border-outline-variant/30 mt-auto">
+<button class="w-full bg-primary text-on-primary py-stack-sm rounded hover:opacity-90 transition-opacity font-ui-label-md text-ui-label-md mb-stack-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add Feed
+            </button>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-ui-label-md text-ui-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-container-high py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-ui-label-md text-ui-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Article List Section -->
+<main class="w-[320px] h-screen flex flex-col border-r border-outline-variant dark:border-outline bg-surface">
+<!-- TopAppBar Context -->
+<header class="h-16 flex items-center px-gutter gap-stack-md border-b border-outline-variant sticky top-0 bg-surface z-30">
+<div class="relative flex-1 group">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-[18px] opacity-40 group-focus-within:text-secondary group-focus-within:opacity-100 transition-all">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low border-none rounded-lg text-ui-label-md focus:ring-2 focus:ring-secondary/30 transition-all outline-none" placeholder="Search unread..." type="text">
+</div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-1.5 hover:bg-surface-container rounded-full text-[20px] transition-colors" data-icon="filter_list">filter_list</button>
+<button class="material-symbols-outlined p-1.5 hover:bg-surface-container rounded-full text-[20px] transition-colors" data-icon="refresh">refresh</button>
+</div>
+</header>
+<!-- List Filters -->
+<div class="flex border-b border-outline-variant bg-surface-container-lowest">
+<button class="flex-1 py-3 text-ui-label-md font-bold text-primary border-b-2 border-secondary">Unread</button>
+<button class="flex-1 py-3 text-ui-label-md text-on-surface-variant hover:text-primary transition-colors">All Articles</button>
+</div>
+<!-- Scrollable List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Active Item -->
+<article class="p-gutter border-b border-outline-variant/50 bg-surface-container-high relative group cursor-pointer">
+<div class="absolute left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-secondary-container"></div>
+<div class="flex justify-between items-start mb-1">
+<span class="font-ui-meta text-ui-meta text-on-surface-variant uppercase tracking-wider">The Verge</span>
+<span class="font-ui-meta text-ui-meta opacity-60">2h</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 leading-tight">Understanding WXT Framework for Chrome Extensions</h3>
+<p class="text-on-surface-variant text-[13px] line-clamp-2 leading-snug mb-3">WXT is the next-gen framework making extension development as seamless as modern web development with Nitro, Vite, and HMR...</p>
+<span class="px-2 py-0.5 bg-secondary-container/20 text-on-secondary-container rounded-sm font-ui-meta text-[10px] font-bold uppercase">Technology</span>
+</article>
+<!-- Other Items -->
+<article class="p-gutter border-b border-outline-variant/50 hover:bg-surface-container transition-colors relative cursor-pointer">
+<div class="absolute left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-secondary-container"></div>
+<div class="flex justify-between items-start mb-1">
+<span class="font-ui-meta text-ui-meta text-on-surface-variant uppercase tracking-wider">Smashing Mag</span>
+<span class="font-ui-meta text-ui-meta opacity-60">4h</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 leading-tight">Fluid Typography with Container Queries</h3>
+<p class="text-on-surface-variant text-[13px] line-clamp-2 leading-snug mb-3">Exploring the potential of @container to solve responsive font sizing without media query bloat...</p>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-sm font-ui-meta text-[10px] font-bold uppercase">Design</span>
+</article>
+<article class="p-gutter border-b border-outline-variant/50 hover:bg-surface-container transition-colors relative cursor-pointer">
+<div class="flex justify-between items-start mb-1 opacity-50">
+<span class="font-ui-meta text-ui-meta text-on-surface-variant uppercase tracking-wider">Hacker News</span>
+<span class="font-ui-meta text-ui-meta opacity-60">12h</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface opacity-50 mb-2 leading-tight">Deep Dive into LLM Architecture Optimization</h3>
+<p class="text-on-surface-variant text-[13px] line-clamp-2 leading-snug mb-3">A technical breakdown of how flash attention and KV caching are revolutionizing inference speed...</p>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-sm font-ui-meta text-[10px] font-bold uppercase opacity-50">Technology</span>
+</article>
+<!-- Repeat item to fill -->
+<article class="p-gutter border-b border-outline-variant/50 hover:bg-surface-container transition-colors relative cursor-pointer">
+<div class="absolute left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-secondary-container"></div>
+<div class="flex justify-between items-start mb-1">
+<span class="font-ui-meta text-ui-meta text-on-surface-variant uppercase tracking-wider">TechCrunch</span>
+<span class="font-ui-meta text-ui-meta opacity-60">1d</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 leading-tight">The Future of Spatial Computing in 2024</h3>
+<p class="text-on-surface-variant text-[13px] line-clamp-2 leading-snug mb-3">As headsets become more accessible, developers are finding new ways to bridge the digital-physical gap...</p>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-sm font-ui-meta text-[10px] font-bold uppercase">Technology</span>
+</article>
+</div>
+</main>
+<!-- Reading Pane Section -->
+<section class="flex-1 h-screen overflow-y-auto custom-scrollbar bg-surface-bright relative">
+<!-- Floating FAB Actions (Visible on selection) -->
+<!-- Article Content -->
+<article class="reading-pane-content px-gutter pb-24">
+<header class="mb-6">
+<div class="flex items-center justify-between gap-2 mb-6 sticky top-0 bg-surface-bright z-10 h-16">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-ui-label-sm text-[11px] font-bold uppercase tracking-widest rounded-full">Technology</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<time class="font-ui-meta text-ui-meta text-on-surface-variant">March 14, 2024</time>
+</div>
+<div class="flex items-center gap-1">
+<div class="bg-surface-container-low flex items-center p-1 rounded-lg border border-outline-variant/20">
+<button class="p-2 hover:bg-surface-container rounded-md text-on-surface-variant hover:text-primary transition-all" title="Original Link">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-md text-on-surface-variant hover:text-secondary transition-all" title="Star">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-md text-on-surface-variant hover:text-primary transition-all" title="Mark as Read">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary p-2 rounded-lg flex items-center justify-center hover:opacity-90 transition-all ml-1" title="Share">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<h1 class="font-display-sm text-[42px] leading-[1.1] text-on-surface mb-8 font-bold">Understanding WXT Framework for Chrome Extensions</h1>
+<div class="flex items-center gap-gutter border-y border-outline-variant/30 py-6">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Author" class="w-full h-full object-cover" data-alt="A professional, high-resolution portrait of a tech writer in their 30s with short dark hair, wearing a minimalist black turtleneck against a soft, out-of-focus modern studio background. The lighting is bright and clean, emphasizing a professional yet approachable persona suitable for a premium tech publication. The image follows a high-key light mode aesthetic with natural shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0DgzDBKPf2v-hwwd9h2BGGnIhAErrDjweBY96msuUogxRzoBJkfMZqvujh7TmYLWgp_VGEM4PrDSmsZOjNFz4wA6O89nrRV_vCEImOAHS1nOTdtvdKZ2tlm-vViUgW0G9Hl_rkComAFY7kJM-Vsjcf9osd5NdU2hCqrKjMBL_jDuTw_2vXQW4o5xKgJ0j2XvD2OPUj9amoQQ_JKN2biwERL6kIBg2vfj4YPZHKtE0EuYV_o1jqd4Zx8oyweqm3iWc2oCux8qlSdSk">
+</div>
+<div>
+<p class="font-ui-label-md text-ui-label-md text-on-surface font-bold">David Richardson</p>
+<p class="font-ui-meta text-ui-meta text-on-surface-variant">Editor, The Verge • 8 min read</p>
+</div>
+</div>
+</header>
+<div class="space-y-8 font-body-lg text-body-lg text-on-surface leading-relaxed">
+<p class="">The landscape of web extension development has long been plagued by fragmented tools, outdated manifest requirements, and a lack of modern development ergonomics. Enter <strong>WXT</strong>, a framework that promises to unify the experience across Chromium, Firefox, and Safari.</p>
+<div class="my-10">
+<figure class="rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm">
+<img alt="Workspace" class="w-full h-auto" data-alt="A sleek, modern desk setup featuring a high-end mechanical keyboard, a minimalist monitor showing clean lines of computer code, and soft ambient lighting. The room is decorated in a corporate modern style with a palette of whites, slates, and warm wood tones. The focus is on precision and professional productivity, illuminated by soft morning sunlight through a nearby window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVG3BsjkF22TI_-bsdg9xGAzPp8WGybWEVE3azqp9TWMmc6lhZazUReplPiPsXAMDKSmhuaG7kDEHU3oW8RspC0OIGBBk2kP7JmEe5TWegLhnWqiuMn-w1PvHenhMg7b6tLbcD5no3FIFJIDH6tBZIyumo06E5z5i5VEnwJrzECedjNqcLA1nbITkgBIV-3-VyO3RBwY2rj7iLNa_0mHN6fTpXZerx5H61fvu_Fjn-IHFvTu1JHUlVGM-XzAi2TvuOTR2eHNNxyjNV">
+<figcaption class="bg-surface-container-low p-3 text-ui-meta text-on-surface-variant italic text-center">Modern extensions require modern tooling.</figcaption>
+</figure>
+</div>
+<p class="">WXT leverages the power of Vite to provide Hot Module Replacement (HMR) for content scripts—a feat that was previously difficult to achieve reliably. This allows developers to see changes instantly without refreshing the extension or the page.</p>
+<div class="bg-on-primary-fixed p-gutter rounded-lg my-10 overflow-x-auto border border-outline shadow-inner">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/10 pb-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-amber-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+<span class="ml-4 font-ui-meta text-[11px] text-primary-fixed-dim uppercase opacity-60">wxt.config.ts</span>
+</div>
+<code class="text-primary-fixed-dim font-mono text-sm leading-relaxed block">
+                        import { defineConfig } from 'wxt';<br>
+<br>
+                        export default defineConfig({<br>
+                        &nbsp;&nbsp;manifest: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;name: 'Reader-Sync',<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;permissions: ['storage', 'tabs'],<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;action: {},<br>
+                        &nbsp;&nbsp;},<br>
+                        });
+                    </code>
+</div>
+<h2 class="font-headline-md text-[28px] text-on-surface mt-12 mb-4">Why manifest V3 matters</h2>
+<p class="">With Google's hard pivot to Manifest V3, developers are forced to rethink how service workers and declarative content scripts interact. WXT abstracts these complexities, handling the heavy lifting of entrypoint registration automatically based on your file structure.</p>
+<p class="">During our testing phase, we found that porting an existing MV2 extension to MV3 using WXT reduced the boilerplate code by nearly 40%. The directory-based routing for popups and background scripts feels strikingly similar to Next.js or Nuxt, providing a familiar mental model for web developers.</p>
+</div>
+<footer class="mt-20 pt-10 border-t border-outline-variant/30 flex flex-col items-center">
+<div class="text-on-surface-variant opacity-40 font-ui-label-sm uppercase tracking-[0.2em] mb-6">End of Article</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 border border-outline rounded-full font-ui-label-md hover:bg-surface-container transition-all">Previous</button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-full font-ui-label-md hover:opacity-90 transition-all">Next Article</button>
+</div>
+</footer>
+</article>
+</section>
+<!-- UI Interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listItems = document.querySelectorAll('main article');
+            listItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    listItems.forEach(i => i.classList.remove('bg-surface-container-high'));
+                    item.classList.add('bg-surface-container-high');
+                    // In a real app, this would load the content
+                    const indicator = item.querySelector('.bg-secondary-container');
+                    if (indicator) {
+                        indicator.style.opacity = '0'; // Simulate mark as read
+                    }
+                });
+            });
+
+            // Smooth Scroll for Reading Pane
+            const readingPane = document.querySelector('section');
+            readingPane.addEventListener('scroll', () => {
+                const fab = document.querySelector('.fixed');
+                if (readingPane.scrollTop > 100) {
+                    fab.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

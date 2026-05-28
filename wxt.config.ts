@@ -5,14 +5,10 @@ import path from 'node:path';
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   manifest: {
-    permissions: ['storage', 'contextMenus', 'activeTab', 'scripting', 'tabs'],
+    permissions: ['storage', 'contextMenus', 'activeTab', 'scripting', 'tabs', 'alarms'],
     host_permissions: ['*://*/*'],
     name: 'FluxFeed',
     description: 'A browser extension that provides a feed of updates from various sources, such as social media, news, and more.',
-    options_ui: {
-      page: 'options.html',
-      open_in_tab: true,
-    },
     action: {
       default_title: "FluxFeed",
     },
@@ -20,6 +16,14 @@ export default defineConfig({
     }
   },
   modules: ['@wxt-dev/module-react'],
+  hooks: {
+    'build:manifestGenerated': (wxt, manifest) => {
+      manifest.options_ui = {
+        page: 'options.html',
+        open_in_tab: true,
+      };
+    },
+  },
   vite: () => ({
     plugins: [tailwindcss() as any],
     resolve: {

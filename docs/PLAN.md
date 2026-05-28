@@ -1,108 +1,99 @@
-# FluxFeed Project Plan
+# RSS Reader 浏览器插件 — 项目计划
 
-## Goal
+## 项目概述
 
-Build FluxFeed as a local-first browser extension RSS reader. The extension
-should make subscription easy from the current page, then provide a full reading
-workspace in the options page with grouping, local search, reading state,
-favorites, import/export, and configurable reading behavior.
+本项目是一款基于浏览器扩展（Chrome / Firefox / Edge）的 RSS 阅读器插件，旨在让用户无需离开当前网页即可订阅、管理和阅读 RSS/Atom 信息流。插件以轻量、快速、离线优先为核心原则，提供接近原生应用的阅读体验。
 
-## Product Principles
+---
 
-- Local-first: article storage, search, filters, read state, settings, and
-  personalization live locally in IndexedDB.
-- Fast reader workflow: the options page is optimized for scanning, keyboard
-  navigation, filtering, and reading many articles.
-- Safe rendering: feed-provided HTML is untrusted and must be sanitized before
-  display.
-- Extension-native: popup, content script, background script, and options page
-  each have clear responsibilities.
-- Incremental delivery: each feature file under `docs/features/` should be
-  independently implementable and testable.
+## 目标用户
 
-## Milestones
+| 用户群体 | 核心诉求 |
+|---|---|
+| 信息工作者 | 高效聚合多源资讯，减少信息噪音 |
+| 开发者 | 订阅技术博客、GitHub Release、changelog |
+| 内容创作者 | 监控竞品动态、行业资讯 |
+| 普通读者 | 替代社交媒体算法，主动掌控信息源 |
 
-### M1: Foundation
+---
 
-- Confirm WXT popup/options/background/content entrypoints.
-- Add missing runtime dependencies for RSS parsing and HTML sanitization.
-- Define Dexie schema for feeds, groups, articles, article tags, settings, and
-  sync metadata.
-- Add shared domain types and repository/service boundaries.
-- Add baseline settings store with defaults.
-- Add i18n foundation with English as the default locale plus Simplified Chinese
-  and Japanese resource files.
+## 核心原则
 
-### M2: Feed Subscription
+1. **隐私优先** — 所有数据本地存储，无服务端，无追踪
+2. **离线可用** — Service Worker 缓存，断网可读历史文章
+3. **极简操作** — 一键订阅当前页面的 RSS，三步内完成任何操作
+4. **性能第一** — 插件弹窗首屏渲染 < 200ms，文章列表虚拟滚动
 
-- Implement manual feed URL subscription.
-- Detect RSS/Atom feeds on the active page from popup and content script data.
-- Support one-click subscribe from popup.
-- Add feed group assignment during subscription.
-- Store feed metadata, fetch status, and last refresh result.
+---
 
-### M3: Article Ingestion And List
+## 里程碑计划
 
-- Fetch subscribed feeds and normalize entries into article records.
-- De-duplicate articles by feed ID plus GUID/link fallback.
-- Show inbox, all articles, feed-group scoped lists, favorites, unread, and read
-  views.
-- Add list sorting by newest/oldest.
-- Add virtual scrolling for article lists.
-- Add manual article tagging from the reader and list context menu.
+### Phase 1 — MVP（第 1–4 周）
 
-### M4: Reading Experience
+**目标**：核心订阅与阅读闭环可用
 
-- Build internal article reading view in options.
-- Sanitize HTML, lazy-load images, harden links, and style code blocks.
-- Support opening the original article in a new tab.
-- Implement read-state triggers and keyboard navigation.
+- [ ] 项目脚手架（Manifest V3 + Vite + TypeScript）
+- [ ] RSS / Atom 解析器（支持 RSS 2.0、Atom 1.0、JSON Feed）
+- [ ] Feed 订阅管理（添加、删除、手动刷新）
+- [ ] 文章列表展示（未读/已读状态）
+- [ ] 内置阅读视图（正文提取 + 沉浸阅读）
+- [ ] 数据本地持久化（IndexedDB）
+- [ ] Popup 主界面框架
 
-### M5: Search, Filtering, And Personalization
+### Phase 2 — 增强体验（第 5–8 周）
 
-- Implement local weighted search across title, summary, body, author, feed
-  name, and article tags.
-- Add persistent filters as core navigation, not as a separate modal.
-- Add theme, dark mode, font, auto-refresh, article retention, keyboard, reset,
-  language, tag management, import/export, and about settings.
+**目标**：提升日常使用效率与舒适度
 
-### M6: Import, Export, And Maintenance
+- [ ] 自动后台刷新（可配置间隔：15min / 1h / 4h）
+- [ ] 未读角标（浏览器扩展图标 Badge）
+- [ ] 一键订阅（检测当前页面 RSS 链接）
+- [ ] 收藏 / 稍后读
+- [ ] 文章搜索（全文检索）
+- [ ] 标签 / 分组管理
+- [ ] 快捷键支持
 
-- Support OPML import/export for feeds and groups.
-- Support JSON backup/export for full local data where practical.
-- Add retention cleanup by article age.
-- Add error surfaces and recovery flows for failed feeds.
+### Phase 3 — 高级功能（第 9–12 周）
 
-### M7: Hardening
+**目标**：差异化竞争力与生态集成
 
-- Review extension permissions and host permissions.
-- Add tests for parser normalization, sanitization, search ranking, read-state
-  transitions, Dexie repositories, i18n fallback behavior, and settings
-  migration.
-- Verify popup/options flows in Chromium and Firefox builds.
-- Profile article list and reader performance with large local libraries.
+- [ ] OPML 导入 / 导出
+- [ ] 文章过滤规则（关键词过滤、屏蔽词）
+- [ ] 多主题 / 暗色模式
+- [ ] 跨设备同步（可选，基于用户自有存储：WebDAV / Dropbox）
+- [ ] 键盘导航（Vim 风格）
+- [ ] 分享文章（复制链接、发送到剪贴板）
 
-## Feature Index
+---
 
-- [001 Technical Stack](features/001-technical-stack.md)
-- [002 Extension Surfaces](features/002-extension-surfaces.md)
-- [003 Internationalization](features/003-internationalization.md)
-- [004 Security](features/004-security.md)
-- [005 Feed Subscription](features/005-feed-subscription.md)
-- [006 Article Reading](features/006-article-reading.md)
-- [007 Read State](features/007-read-state.md)
-- [008 Article Tags](features/008-article-tags.md)
-- [009 Search And Filters](features/009-search-and-filters.md)
-- [010 Keyboard Shortcuts](features/010-keyboard-shortcuts.md)
-- [011 Settings Personalization](features/011-settings-personalization.md)
-- [012 Import Export](features/012-import-export.md)
-- [013 Performance](features/013-performance.md)
+## 技术选型
 
-## Delivery Notes
+| 层级 | 技术 |
+|---|---|
+| 扩展框架 | Manifest V3（Chrome）/ WebExtensions API |
+| 构建工具 | Vite + TypeScript |
+| UI 框架 | React 18 + CSS Modules |
+| 状态管理 | Zustand |
+| 本地存储 | IndexedDB（via Dexie.js） |
+| 数据获取 | Background Service Worker + Fetch API |
+| RSS 解析 | 自研轻量解析器（基于 DOMParser） |
+| 测试 | Vitest + Playwright（E2E） |
 
-- `rss-parser` and DOMPurify are required by the plan but are not guaranteed to
-  be installed in the current package state.
-- Options page is the main application surface. Popup should avoid duplicating
-  complex reader behavior.
-- New feature requests should be added as `docs/features/NNN-name.md` and
-  referenced from this file.
+---
+
+## 交付物
+
+- 可安装的浏览器扩展包（`.crx` / `.xpi`）
+- Chrome Web Store 发布版本
+- 完整设计文档（本 docs 目录）
+- 用户使用手册
+
+---
+
+## 风险与应对
+
+| 风险 | 概率 | 应对措施 |
+|---|---|---|
+| CORS 限制导致 RSS 拉取失败 | 高 | Background SW 绕过，必要时提示用户使用代理 |
+| RSS 格式不规范 | 中 | 容错解析，降级抓取 `<link>` 标签 |
+| Manifest V3 Service Worker 限制 | 中 | 使用 Alarms API 代替长连接 |
+| Chrome Store 审核延迟 | 低 | 提前两周提交，准备旁加载文档 |
